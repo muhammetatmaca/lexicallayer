@@ -1,5 +1,19 @@
 # LexicalLayer: Real-Time Representation Engineering & LoRA Steering Architecture for LLM Agents
 
+<div align="center">
+
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![npm SDK](https://img.shields.io/npm/v/@lexicallayer/sdk.svg?color=emerald&label=@lexicallayer/sdk)](https://www.npmjs.com/package/@lexicallayer/sdk)
+[![npm CLI](https://img.shields.io/badge/npm-@lexicallayer/cli-orange)](https://www.npmjs.com/package/@lexicallayer/cli)
+[![Production Live](https://img.shields.io/badge/Production%20Live-lexicallayer.muhammetatmaca.com.tr-0272FC)](https://lexicallayer.muhammetatmaca.com.tr)
+[![Next.js](https://img.shields.io/badge/Next.js-16.3-black)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6)](https://www.typescriptlang.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C)](https://pytorch.org)
+
+[Canlı Platform](https://lexicallayer.muhammetatmaca.com.tr) • [Studio Kalibrasyon](https://lexicallayer.muhammetatmaca.com.tr/studio) • [API & Dokümantasyon](https://lexicallayer.muhammetatmaca.com.tr/docs) • [npm SDK](https://www.npmjs.com/package/@lexicallayer/sdk)
+
+</div>
+
 LexicalLayer, üretici yapay zeka modellerindeki (LLM) sentetik kurumsal klişeleri ("AI slop") ortadan kaldıran ve agent sistemlerine kullanıcıya/kuruma özel bilişsel üslup kazandıran uçtan uca bir representation engineering ve ters vekil (reverse proxy) mimarisidir.
 
 Sistem; prompt düzeyinde kelime manipülasyonu yapmak yerine, modelin gizli durumlarına (residual stream) doğrudan müdahale eden **Rank-16 LoRA adaptörleri**, **kontrastif steering vektörleri** ve **pre-softmax logit warping** tekniklerini bir arada çalıştırır.
