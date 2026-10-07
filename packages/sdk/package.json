@@ -1,0 +1,25 @@
+{
+  "name": "@lexicallayer/sdk",
+  "version": "0.1.6",
+  "description": "LexicalLayer SDK - Programmatic representation engineering & LoRA adapter loading for AI agents",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "keywords": [
+    "ai",
+    "agents",
+    "lora",
+    "safetensors",
+    "steering-vectors",
+    "llm-agent"
+  ],
+  "author": "LexicalLayer Team",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  }
+}

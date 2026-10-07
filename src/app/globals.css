@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f7f5;
+  --foreground: #222f30;
+  --dark-charcoal: #222f30;
+  --sage-mist: #c9cbbe;
+  --fresh-lime: #a7e26e;
+  --soft-mint: #cef79e;
+  --deep-sea-green: #445e5f;
+  --off-white: #f7f7f5;
+  --light-gray: #eeeeee;
+  --medium-gray: #e4e3e3;
 }
 
 @theme inline {
@@ -12,15 +20,105 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.015em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom integratedbio-style pills & buttons */
+.bio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bio-btn-dark {
+  background-color: #222f30;
+  color: #ffffff;
+}
+
+.bio-btn-dark:hover {
+  background-color: #162021;
+  transform: translateY(-1px);
+}
+
+.bio-btn-outline {
+  border: 1px solid rgba(34, 47, 48, 0.2);
+  color: #222f30;
+}
+
+.bio-btn-outline:hover {
+  border-color: #222f30;
+  background-color: rgba(34, 47, 48, 0.04);
+}
+
+/* Marquee infinite animation */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes slop-scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes slop-scroll-right {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-slop-left {
+  animation: slop-scroll-left 42s linear infinite;
+}
+
+.animate-slop-right {
+  animation: slop-scroll-right 42s linear infinite;
+}
+
+.animate-marquee-continuous {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 24s linear infinite;
+}
+
+.animate-marquee-continuous:hover {
+  animation-play-state: paused;
+}
+
+/* Subtle corner badge for editorial buttons */
+.bio-tag {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #445e5f;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.animate-scroll-bounce {
+  animation: scroll-bounce 2s ease-in-out infinite;
 }

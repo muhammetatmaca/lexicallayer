@@ -1,0 +1,27 @@
+{
+  "name": "@lexicallayer/cli",
+  "version": "0.2.0",
+  "description": "LexicalLayer CLI - Representation engineering and authentic weight calibration for AI agents",
+  "main": "bin/index.js",
+  "bin": {
+    "lexicallayer": "./bin/index.js"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "keywords": [
+    "ai",
+    "agents",
+    "lora",
+    "safetensors",
+    "steering-vectors",
+    "representation-engineering",
+    "llm"
+  ],
+  "author": "LexicalLayer Team",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  }
+}
