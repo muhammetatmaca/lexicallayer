@@ -65,7 +65,57 @@ Sistem dört ana katmandan meydana gelir:
 
 ---
 
-## 3. Matematiksel Temeller ve Uygulanan Teknikler
+## 3. Kullanıcı Verisi Alımı, İncelemesi ve Ağırlık Dönüşüm Hattı (Data Ingestion Pipeline)
+
+LexicalLayer'ın temel ayırt edici gücü, kullanıcının kişisel düşünce yapısını ve yazım parmak izini doğrudan veri kaynağından çıkarıp ağırlığa dönüştürmesidir.
+
+```
+┌────────────────────────────────────────────────────────┐
+│     Kullanıcı Verisi (Personal / Corporate Corpus)     │
+│  • Kişisel Markdown notları ve mimari tasarım kararları │
+│  • Teknik dokümantasyonlar, blog yazıları, makaleler   │
+│  • Slack / PR inceleme yorumları, doğrudan e-postalar  │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│        1. Pre-Processing & Token Ayrıştırma            │
+│  • Bi-gram ve n-gram frekans analizi                   │
+│  • Sentetik dolgu / pasif çatı tespiti                 │
+│  • Otantik sözlük (User Vocabulary Space) inşası       │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│        2. Latent Projection & Vektör Farkı             │
+│  • Temel model gizli katman gömüleri (Hidden States)   │
+│  • Kullanıcı aktivasyon ortalaması: E[h_user]          │
+│  • Sentetik temel aktivasyon ortalaması: E[h_baseline] │
+└───────────────────────────┬────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────┐
+│        3. SVD ile Düşük Rütbeli Ağırlık Sentezi        │
+│  • Kovaryans matrisi üzerinden Rank-16 PCA/SVD         │
+│  • lora_A (d_model -> r) ve lora_B (r -> d_model)      │
+│  • FP16 SafeTensors: user_steered_rank16.safetensors   │
+└────────────────────────────────────────────────────────┘
+```
+
+### 3.1. Alınan Veri Tipleri
+* **Kişisel Notlar ve Mimari Kararlar:** Yazarın doğrudan, kısa ve sonuca odaklı yaklaşımını içeren Markdown/TXT dosyaları.
+* **Teknik Dokümanlar & Kod İncelemeleri:** Kurum içi terminolojiyi, değişken isimlendirme kültürünü ve mühendislik prensiplerini temsil eden metinler.
+* **Gerçek İletişim Örnekleri:** Kurumsal nezaket veya yapay zeka jargonu içermeyen samimi, doğrudan e-posta ve mesajlaşma kayıtları.
+
+### 3.2. Verinin İşlenme ve Ağırlığa Dönüşme Süreci
+1. **İçerik Alımı (Ingestion API):** `POST /api/user-data/ingest` uç noktası üzerinden metin parçaları sisteme girer. Token sayımı ve karakter yoğunluğu hesaplanır.
+2. **Kovaryans Analizi:** Kullanıcının metinlerinden elde edilen latent aktivasyonların ($\mathbb{R}^{n \times d}$) varyans yapısı taranarak yazarın kendine has "düşünce eksenleri" (principal components) belirlenir.
+3. **LoRA Matris Çıkarması:** En yüksek varyansa sahip ilk 16 tekil vektör (Rank-16) seçilir. Bu vektörler $A$ ve $B$ projeksiyon matrislerine dönüştürülerek $\Delta W$ adaptörü üretilir.
+4. **Agent'a Kilitlenme:** Üretilen `user_steered_rank16.safetensors` dosyası SDK ve Gateway aracılığıyla çalışan AI Agent'ına bağlanır; böylece model her çalıştığında kullanıcının verilerinden sentezlenen üslupla konuşur.
+
+---
+
+## 4. Matematiksel Temeller ve Uygulanan Teknikler
 
 ### 3.1. Kontrastif Aktivasyon Yönlendirmesi (Representation Engineering - RepE)
 Modelin belirli katmanlarındaki ($l \in \{14 \dots 22\}$) residual stream aktivasyonları pozitif korpus (kullanıcının otantik metinleri) ve negatif korpus (sentetik kurumsal klişe veri seti) üzerinden toplanır:
