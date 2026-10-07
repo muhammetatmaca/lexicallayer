@@ -1,162 +1,161 @@
-# LexicalLayer
+# LexicalLayer: Real-Time Representation Engineering & LoRA Steering Architecture for LLM Agents
 
-<div align="center">
+LexicalLayer, üretici yapay zeka modellerindeki (LLM) sentetik kurumsal klişeleri ("AI slop") ortadan kaldıran ve agent sistemlerine kullanıcıya/kuruma özel bilişsel üslup kazandıran uçtan uca bir representation engineering ve ters vekil (reverse proxy) mimarisidir.
 
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![npm SDK](https://img.shields.io/npm/v/@lexicallayer/sdk.svg?color=emerald&label=@lexicallayer/sdk)](https://www.npmjs.com/package/@lexicallayer/sdk)
-[![npm CLI](https://img.shields.io/badge/npm-@lexicallayer/cli-orange)](https://www.npmjs.com/package/@lexicallayer/cli)
-[![Live Platform](https://img.shields.io/badge/Production%20Live-lexicallayer.muhammetatmaca.com.tr-0272FC)](https://lexicallayer.muhammetatmaca.com.tr)
-[![Next.js](https://img.shields.io/badge/Next.js-16.3-black)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6)](https://www.typescriptlang.org)
-
-**Real-Time Anti-Slop Representation Engineering, LoRA Steering Gateway & Calibration Studio for LLM Agents.**
-
-[🚀 Canlı Platform](https://lexicallayer.muhammetatmaca.com.tr) • [🎨 Studio Deneyimi](https://lexicallayer.muhammetatmaca.com.tr/studio) • [📖 Dokümantasyon](https://lexicallayer.muhammetatmaca.com.tr/docs) • [📦 npm SDK](https://www.npmjs.com/package/@lexicallayer/sdk)
-
-</div>
+Sistem; prompt düzeyinde kelime manipülasyonu yapmak yerine, modelin gizli durumlarına (residual stream) doğrudan müdahale eden **Rank-16 LoRA adaptörleri**, **kontrastif steering vektörleri** ve **pre-softmax logit warping** tekniklerini bir arada çalıştırır.
 
 ---
 
-## 📸 Canlı Platform Ekran Görüntüleri (Live Production Screenshots)
+## 1. Problem Tanımı ve Mühendislik Motivasyonu
 
-Aşağıdaki görüntüler doğrudan canlıda çalışan [lexicallayer.muhammetatmaca.com.tr](https://lexicallayer.muhammetatmaca.com.tr) üretim ortamından alınmıştır.
+Mevcut büyük dil modelleri (GPT-4o, Claude 3.5 Sonnet, Llama 3 serisi), pekiştirmeli insan geri bildirimi (RLHF) ve güvenlik hizalamaları nedeniyle belirgin sentetik kalıplara hapsolmuştur:
 
-<div align="center">
+* **Sentetik Jargon (AI Slop):** *"In today's fast-paced digital landscape"*, *"delve deep into the multifaceted tapestry"*, *"pivotal testament to fostering holistic synergy"* gibi anlamsal yoğunluğu düşük, ezber kurumsal dolgu ifadeleri.
+* **Otantik Karakter Kaybı:** Bir mühendisin doğrudan, net ve gereksiz soyutlamalardan arındırılmış karar mantığı veya bir kurumun spesifik terminolojisi model tarafından genelleştirilerek silinir.
+* **Prompt Engineering'in Yapısal Sınırları:** "Klişe kullanma, doğrudan konuş" gibi sistem promptları token maliyeti yaratır, context penceresini tüketir, modelin dikkat (attention) bütçesini bozar ve "jailbreak" veya uzun sohbetlerde zayıflar.
 
-### 1. Hero Landing & 3D Spline Canvas
-<img src="./docs/screenshots/01-hero-landing.png" width="100%" alt="LexicalLayer Hero Landing" />
-<p><i>İnteraktif 3D Spline sahnesi, mimari el konturu, tek satırda SDK kurulum kartı ve editoryal tipografi.</i></p>
-
----
-
-### 2. The Integrated Platform (#0272FC Blue Canvas) & WebGL 3D Tearing Cards
-<img src="./docs/screenshots/02-platform-showcase.png" width="100%" alt="LexicalLayer Platform Section" />
-<p><i>Kullanıcı etkileşimiyle 3D parçalanan sosyal medya ve sentetik metin kartları (WebGL Shaders + Matter.js simülasyonu).</i></p>
+LexicalLayer bu problemi prompt katmanından çıkarıp modelin **iç temsil uzayına (internal representation space)** ve **token olasılık dağılımına (pre-softmax logits)** taşır.
 
 ---
 
-### 3. AI Slop vs. Human Precision (Interactive Auto-Scan Comparison)
-<img src="./docs/screenshots/03-comparison-slider.png" width="100%" alt="AI Slop vs Clean Comparison Slider" />
-<p><i>Otomatik tarama yapan split-slider: Ham yapay zeka çıktısındaki (Slop) 6 sentetik metafor ve 4 klişenin temiz, yoğun insan diline dönüştürülmesi.</i></p>
-
----
-
-### 4. Developer Infrastructure & Single-Line Proxy Gateway
-<img src="./docs/screenshots/04-developer-gateway.png" width="100%" alt="Developer Infrastructure & Integrations" />
-<p><i>Canlı terminal animasyonu ve model entegrasyon infografiği (OpenAI, Claude, Gemini, DeepSeek, Qwen, Llama, Ollama, Groq).</i></p>
-
----
-
-### 5. LexicalLayer Studio: Bilişsel Temsil & LoRA Kalibrasyon Paneli
-<img src="./docs/screenshots/05-studio-calibration.png" width="100%" alt="LexicalLayer Studio Dashboard" />
-<p><i>Metin ve doküman yükleme, interaktif veri seti analizi, token bastırma oranları ve canlı ses parmak izi yapılandırması.</i></p>
-
----
-
-### 6. Geliştirici Dokümantasyonu (Reference & SDK Guides)
-<img src="./docs/screenshots/06-docs-reference.png" width="100%" alt="LexicalLayer Documentation" />
-<p><i>0-Code Reverse Proxy, Node/TypeScript SDK (@lexicallayer/sdk), Python istemcisi ve MCP Server konfigürasyonları.</i></p>
-
----
-
-### 7. Responsive Mobil Deneyim
-<img src="./docs/screenshots/07-mobile-experience.png" width="360" alt="LexicalLayer Mobile Experience" />
-<p><i>Mobil cihazlarda tam ekran cybernetic el arka planı, sıfır yatay kayma ve dokunmatik optimize akıcı deneyim.</i></p>
-
-</div>
-
----
-
-## 🎯 Projenin Amacı ve Çözülen Problem
-
-Büyük dil modelleri (GPT-4o, Claude 3.5, Gemini, Llama) varsayılan RLHF ve hizalama süreçleri nedeniyle belirgin kalıplara hapsolmuştur:
-* **Sentetik Slop:** *"In today's fast-paced digital era..."*, *"delve deep into the multifaceted tapestry..."*, *"pivotal testament to fostering holistic synergy..."* gibi ezber laf kalabalığı.
-* **Otantik Ses Kaybı:** Bir mühendisin, yazarın veya şirketin özgün terminolojisi, doğrudanlığı ve karar alma karakteri kaybolur.
-* **Prompt Engineering Yetersizliği:** Prompt ile "bunu söyleme, şöyle yaz" demek hem token maliyeti yaratır, hem context window'u tüketir hem de model tarafından kolayca unutulur.
-
-**LexicalLayer'ın Yaklaşımı:**  
-Prompt seviyesinde kelime manipülasyonu yapmak yerine, **Representation Engineering (Bilişsel Temsil Mühendisliği)** prensibiyle çalışır. Kullanıcının otantik metinlerinden **Rank-16 LoRA adaptörü (`.safetensors`)** ve **residual steering vektörleri** sentezler; modeli inference aşamasında doğrudan hizalar.
-
----
-
-## 🏗️ Mimari & Uçtan Uca Veri Akışı
+## 2. Sistem Mimarisi ve Veri Akışı
 
 ```
-┌────────────────────────────────────────────────────────┐
-│                   İstemci / AI Agent                    │
-└───────────────────────────┬────────────────────────────┘
-                            │
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│          @lexicallayer/sdk (npm resmi paketi)          │
-│   • lexical.wrapOpenAI(openai)                         │
-│   • lexical.generate({ useUserWeights: true })         │
-└───────────────────────────┬────────────────────────────┘
-                            │
-                            ▼
-┌────────────────────────────────────────────────────────┐
-│             Lexical Gateway & Reverse Proxy            │
-│   • <14ms P99 gecikmeyle speculative stream intercept  │
-│   • Token olasılık dağılımı dengeleme                  │
-└─────────────┬────────────────────────────┬─────────────┘
-              │                            │
-              ▼                            ▼
-┌──────────────────────────┐  ┌──────────────────────────┐
-│   LoRA Engine (.safetensors)│ │    Upstream Modeller     │
-│  Rank-16 delta_W layers  │  │  OpenAI / Claude / Gemini│
-│  Residual steering hooks │  │  Local vLLM / Ollama     │
-└──────────────────────────┘  └──────────────────────────┘
+[İstemci Uygulaması / Agent]
+            │
+            ▼
+[@lexicallayer/sdk (@0.1.6)]  ──► wrapOpenAI() / generate()
+            │
+            ▼
+[Lexical Gateway (Reverse Proxy)]
+    ├── Speculative Stream Intercept (<14ms P99)
+    ├── Unembedding Logit Warper (Pre-Softmax Bias: -5.0 Slop, +2.5 Authentic)
+    └── Active Adapter Injector
+            │
+            ├──► [FastAPI Weight Engine (Python 3.11)]
+            │        ├── Contrastive Vector Extractor: v_l = normalize(E[h_pos] - E[h_neg])
+            │        ├── Dynamic LoRA SVD Extractor: Delta_W = B @ A (Rank 16, alpha=32)
+            │        └── FP16 .safetensors Serializer
+            │
+            ▼
+[Upstream LLM Provider] (OpenAI, Anthropic, Gemini, Yerel vLLM / Ollama)
 ```
+
+Sistem dört ana katmandan meydana gelir:
+
+1. **Representation & LoRA Synthesis Engine (`engine/`):** Python tabanlı matematiksel ağırlık çıkarma çekirdeği. Kullanıcının ham metinlerinden kovaryans matrisi üzerinden tekil değer ayrışımı (SVD) ile `lora_A` ve `lora_B` matrislerini hesaplar; `user_steered_rank16.safetensors` çıktısı üretir.
+2. **Activation Steering Hooks (`engine/steering_hook.py`):** Transformer bloklarının forward geçişlerine kanca atarak residual stream üzerinde doğrusal aktivasyon yönlendirmesi gerçekleştirir:
+   $$h_l' = h_l + \alpha \cdot v_l$$
+3. **Resmi npm SDK (`@lexicallayer/sdk`):** İstemci tarafında OpenAI nesnelerini tek satırda sarmalayan ve yerel/bulut çıkarım motorlarına bağlayan TypeScript kütüphanesi.
+4. **Kalibrasyon & Telemetri Platformu (Next.js 16 + Cloudflare Pages):** Kullanıcının kendi dokümanlarını yükleyip gerçek zamanlı token bastırma metriklerini, ses parmak izini ve 3D WebGL yırtılma simülasyonunu izlediği üretim arayüzü.
 
 ---
 
-## 📦 npm Paketleri
+## 3. Matematiksel Temeller ve Uygulanan Teknikler
 
-Proje, monorepo mimarisinde geliştirilen ve npm genel kayıt defterinde yayınlanmış resmi paketler içerir:
+### 3.1. Kontrastif Aktivasyon Yönlendirmesi (Representation Engineering - RepE)
+Modelin belirli katmanlarındaki ($l \in \{14 \dots 22\}$) residual stream aktivasyonları pozitif korpus (kullanıcının otantik metinleri) ve negatif korpus (sentetik kurumsal klişe veri seti) üzerinden toplanır:
 
-### 1. `@lexicallayer/sdk` (v0.1.6)
-> AI Agent'larını ve LLM istemcilerini tek satırda kalibre edilmiş LoRA ağırlıklarına bağlayan çekirdek SDK.
+$$v_l = \frac{\mathbb{E}[h_l^+] - \mathbb{E}[h_l^-]}{\|\mathbb{E}[h_l^+] - \mathbb{E}[h_l^-]\|_2}$$
+
+Forward propagation sırasında bu yön vektörü $v_l$, belirlenen katsayı ($\alpha$) ile toplanarak modelin düşünce uzayı sentetik klişe bölgesinden uzaklaştırılır.
+
+### 3.2. Dinamik Rank-16 LoRA Sentezi (SVD Düşük Rütbeli Yaklaşım)
+Kullanıcı metin gömüleri (embeddings) $X \in \mathbb{R}^{n \times d}$ merkezileştirildikten sonra kovaryans yapısı Rank-16 projeksiyonuna tabi tutulur:
+
+$$X - \mu = U \Sigma V^T$$
+$$A = V^T \in \mathbb{R}^{r \times d}, \quad B = (X - \mu)[:, :r] \cdot \Sigma_r \in \mathbb{R}^{d \times r}$$
+$$\Delta W = \frac{\alpha}{r} (B \cdot A)$$
+
+Elde edilen ağırlık tensörleri FP16 formatında doğrudan `.safetensors` standardında disk üzerine yazılır.
+
+### 3.3. Pre-Softmax Logit Warping
+Son katman unembedding çıkışında, sentetik belirteçlerin (filler tokens) olasılık kütlesi softmax öncesinde bastırılır:
+
+$$\text{logits}' = \text{logits} + b$$
+$$b_i = \begin{cases} -5.0, & i \in \mathcal{V}_{\text{slop}} \\ +2.5, & i \in \mathcal{V}_{\text{authentic}} \\ 0, & \text{diğer} \end{cases}$$
+
+---
+
+## 4. Canlı Sistem Arayüzü ve Ekran Görüntüleri
+
+Aşağıdaki görüntüler doğrudan [lexicallayer.muhammetatmaca.com.tr](https://lexicallayer.muhammetatmaca.com.tr) üretim ortamından alınmıştır:
+
+### 4.1. Hero Landing ve 3D Spline Canvas
+![Hero Landing](./docs/screenshots/01-hero-landing.png)
+*İnteraktif 3D Spline sahnesi, mimari el konturu ve hızlı SDK entegrasyonu sağlayan terminal bileşeni.*
+
+### 4.2. WebGL 3D Sentetik Kart Parçalanma Simülasyonu
+![Platform Showcase](./docs/screenshots/02-platform-showcase.png)
+*Kullanıcı etkileşimiyle fiziksel olarak yırtılan ve parçalanan sentetik sosyal medya kartları (WebGL Shaders + Matter.js).*
+
+### 4.3. Gerçek Zamanlı AI Slop vs. Human Precision Karşılaştırma Motoru
+![Comparison Slider](./docs/screenshots/03-comparison-slider.png)
+*Otomatik tarama yapan split-slider: Ham yapay zeka çıktısındaki (Slop) 6 sentetik metafor ve 4 klişenin temiz, yoğun insan diline dönüştürülmesi.*
+
+### 4.4. Geliştirici Altyapısı ve Tek Satır Proxy Terminali
+![Developer Gateway](./docs/screenshots/04-developer-gateway.png)
+*Canlı model proxy terminali ve OpenAI, Claude, Gemini, DeepSeek, Qwen, Llama, Ollama, Groq entegrasyon infografiği.*
+
+### 4.5. LexicalLayer Studio: Bilişsel Temsil ve LoRA Kalibrasyon Paneli
+![Studio Calibration](./docs/screenshots/05-studio-calibration.png)
+*Metin ve doküman yükleme, veri seti analizi, token bastırma oranları ve canlı ses parmak izi yapılandırması.*
+
+### 4.6. Geliştirici Dokümantasyonu ve API Referansı
+![Docs Reference](./docs/screenshots/06-docs-reference.png)
+*0-Code Reverse Proxy, Node/TypeScript SDK (@lexicallayer/sdk), Python istemcisi ve MCP Server konfigürasyonları.*
+
+### 4.7. Mobil Cihaz Arayüzü
+<div align="center">
+  <img src="./docs/screenshots/07-mobile-experience.png" width="380" alt="Mobile Experience" />
+</div>
+*Mobil cihazlarda dikey tam ekran arka plan kompozisyonu, sıfır yatay kayma ve dokunmatik uyumlu etkileşim.*
+
+---
+
+## 5. npm Paketleri ve İstemci Entegrasyonu
+
+### 5.1. `@lexicallayer/sdk` (v0.1.6)
 
 ```bash
 npm install @lexicallayer/sdk
 ```
 
-#### En Pratik Kullanım: OpenAI Agent Sarmalama
+#### OpenAI Agent Sarmalama (Wrap Pattern)
 ```typescript
 import OpenAI from "openai";
 import { LexicalLayer } from "@lexicallayer/sdk";
 
-// 1. LexicalLayer istemcisini başlat
+// LexicalLayer istemcisini başlat
 const lexical = new LexicalLayer({
   baseUrl: process.env.LEXICAL_BASE_URL || "http://127.0.0.1:8001",
-  agentName: "my-coding-agent"
+  agentName: "production-agent"
 });
 
-// 2. Standart OpenAI istemcisi
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// 3. Tek satırda cognitive katman ile sar
+// OpenAI client'ı cognitive katmanla sarmala
 const steeredOpenAI = lexical.wrapOpenAI(openai);
 
-// 4. Normal chat completion — arka planda anti-slop & otantik ses devrede
+// Normal chat completion çağrısı — model otomatik olarak LoRA kurallarıyla çalışır
 const response = await steeredOpenAI.chat.completions.create({
   model: "gpt-4o",
   messages: [
-    { role: "user", content: "Bu modülün mimarisini net ve doğrudan açıkla." }
+    { role: "user", content: "Sistem mimarisini ve veritabanı kararlarını açıkla." }
   ]
 });
 
 console.log(response.choices[0].message.content);
 ```
 
-#### Doğrudan Test & Ağırlık Metrikleri
+#### Doğrudan Çıkarım ve Metrik Takibi
 ```typescript
 import { LexicalLayer } from "@lexicallayer/sdk";
 
 const lexical = new LexicalLayer();
 
 const result = await lexical.generate({
-  prompt: "Sistem mimarisini ve karar gerekçelerini özetle.",
+  prompt: "Servis mimarisindeki trade-off noktalarını listele.",
   useUserWeights: true
 });
 
@@ -165,80 +164,102 @@ console.log(result.metrics);
 // Çıktı: { lora_rank_applied: 16, fluff_tokens_suppressed: 18 }
 ```
 
-#### Yerel vLLM / Ollama İçin Adaptör Sorgulama
+#### Yerel Çıkarım Motorları (vLLM / Ollama / PEFT) İçin Adaptör Çekme
 ```typescript
 const adapter = await lexical.getCalibratedAdapter();
 console.log("Aktif Adapter:", adapter.adapterFilename); // 'user_steered_rank16.safetensors'
 console.log("LoRA Rank:", adapter.rank);                 // 16
+console.log("Hedef Katmanlar:", adapter.layers);        // [14, 15, 16, 17, 18, 19, 20, 21, 22]
 ```
 
 ---
 
-### 2. `@lexicallayer/cli` (v0.2.0)
-> Terminalden doğrudan ses kalibrasyonu, doküman yükleme ve yerel engine başlatma aracı.
+### 5.2. `@lexicallayer/cli` (v0.2.0)
+
+Terminal üzerinden ses kalibrasyon oturumu başlatmak ve ters vekil servisini ayağa kaldırmak için kullanılır:
 
 ```bash
-# Kurulum gerektirmeden çalıştırma
+# Oturum başlat ve tarayıcıda Studio linki üret
 npx @lexicallayer/cli calibrate
 
-# Yerel ters vekil motorunu 8080 portunda başlatma
+# Yerel ters vekil ağ geçidini 8080 portunda çalıştır
 npx @lexicallayer/cli run --port 8080
 ```
 
 ---
 
-## 🛠️ Teknoloji Yığını (Tech Stack)
+## 6. Teknoloji Yığını (Tech Stack)
 
-| Katman | Teknoloji | Açıklama |
+| Bileşen | Teknoloji | Görev / Sorumluluk |
 | :--- | :--- | :--- |
-| **Frontend Platform** | Next.js 16 (App Router), React 19, Turbopack | Statik export & ultra hızlı derleme süreleri |
-| **Styling & Arayüz** | Tailwind CSS v4, Lucide React | Tam responsive mobil & masaüstü editoryal tasarım |
-| **3D & Shaders** | Spline 3D Scene, WebGL Paper Tearing Shaders, Canvas Gimbal | GPU hızlandırmalı interaktif görsel deneyim |
-| **Global Deployment** | Cloudflare Pages, Custom Subdomain SSL | Sıfır cold-start, küresel edge CDN |
-| **npm Ekosistemi** | `@lexicallayer/sdk`, `@lexicallayer/cli` | TypeScript & CJS/ESM uyumlu modüler kütüphaneler |
-| **Engine & AI Katmanı** | Python 3.11, Safetensors, HuggingFace, PEFT LoRA | Rank-16 adaptör sentezi ve steering kancaları |
+| **Web Platformu** | Next.js 16 (App Router), React 19, Turbopack | Statik export, performanslı istemci sayfaları |
+| **Arayüz & Şekillendirme** | Tailwind CSS v4, Lucide React | Tam responsive mobil & masaüstü tasarım sistemi |
+| **3D & Fizik Motoru** | Spline 3D Runtime, WebGL Shaders, Matter.js | Etkileşimli sahne ve GPU hızlandırmalı kağıt yırtma efektleri |
+| **Kenar Dağıtım (Edge)** | Cloudflare Pages, Custom DNS & SSL | <30ms küresel yanıt süresi, sıfır sunucu maliyeti |
+| **İstemci Kütüphaneleri** | TypeScript, Node.js (npm registry) | `@lexicallayer/sdk`, `@lexicallayer/cli` |
+| **AI / Çıkarım Çekirdeği** | Python 3.11, PyTorch, Safetensors, HuggingFace | LoRA matris ayrışımı, forward hooklar ve logit yönlendirme |
 
 ---
 
-## ⚡ Yerel Çalıştırma (Quick Start)
+## 7. Yerel Kurulum ve Geliştirme
 
-### 1. Depoyu İndirin & Bağımlılıkları Kurun
+### Gereksinimler
+* Node.js 18+
+* pnpm 10+
+* Python 3.10+ (Yerel model ağırlık sentezi çalıştırılacaksa)
+
+### Adım Adım Kurulum
+
+1. Depoyu klonlayın:
 ```bash
 git clone https://github.com/muhammetatmaca/lexicallayer.git
 cd lexicallayer
+```
+
+2. Bağımlılıkları kurun:
+```bash
 pnpm install
 ```
 
-### 2. Geliştirme Sunucusunu Başlatın
+3. Geliştirme ortamını başlatın:
 ```bash
 pnpm dev
 ```
-Tarayıcınızda `http://localhost:3000` adresini açarak platformu görüntüleyin.
+Platform `http://localhost:3000` üzerinde çalışmaya başlayacaktır.
 
-### 3. Statik Üretim Derlemesi
+4. (Opsiyonel) Python Ağırlık Motorunu Başlatın:
+```bash
+python -m venv venv
+# Windows:
+.\venv\Scripts\activate
+# Linux/macOS:
+source venv/bin/activate
+
+pip install -r requirements.txt # torch, safetensors, fastapi, uvicorn
+python engine/server.py
+```
+
+5. Üretim Derlemesi Alın:
 ```bash
 pnpm build
 ```
 
 ---
 
-## 🌐 Canlı Bağlantılar
+## 8. Canlı Bağlantılar
 
-* **Canlı Web Sitesi:** [https://lexicallayer.muhammetatmaca.com.tr](https://lexicallayer.muhammetatmaca.com.tr)
-* **Pages Aynası:** [https://lexicallayer.pages.dev](https://lexicallayer.pages.dev)
-* **SDK Dokümantasyonu:** [https://lexicallayer.muhammetatmaca.com.tr/docs](https://lexicallayer.muhammetatmaca.com.tr/docs)
-* **Studio Kalibrasyon Ekranı:** [https://lexicallayer.muhammetatmaca.com.tr/studio](https://lexicallayer.muhammetatmaca.com.tr/studio)
+* **Canlı Platform:** [https://lexicallayer.muhammetatmaca.com.tr](https://lexicallayer.muhammetatmaca.com.tr)
+* **Pages Mirror:** [https://lexicallayer.pages.dev](https://lexicallayer.pages.dev)
+* **Studio Paneli:** [https://lexicallayer.muhammetatmaca.com.tr/studio](https://lexicallayer.muhammetatmaca.com.tr/studio)
+* **Dokümantasyon:** [https://lexicallayer.muhammetatmaca.com.tr/docs](https://lexicallayer.muhammetatmaca.com.tr/docs)
+* **npm SDK Paketi:** [https://www.npmjs.com/package/@lexicallayer/sdk](https://www.npmjs.com/package/@lexicallayer/sdk)
 
 ---
 
-## 👨‍💻 Geliştirici & İletişim
+## 9. Geliştirici ve Lisans
 
-**Muhammet Atmaca**  
+**Geliştirici:** Muhammet Atmaca  
 * **GitHub:** [@muhammetatmaca](https://github.com/muhammetatmaca)  
-* **Portfolio & Blog:** [muhammetatmaca.com.tr](https://muhammetatmaca.com.tr)  
+* **Kişisel Web Sitesi:** [muhammetatmaca.com.tr](https://muhammetatmaca.com.tr)  
 
----
-
-## 📄 Lisans
-
-Bu proje [Apache-2.0](LICENSE) açık kaynak lisansı altında lisanslanmıştır.
+Bu proje [Apache-2.0](LICENSE) lisansı altında geliştirilmiş ve açık kaynak olarak paylaşılmıştır.
