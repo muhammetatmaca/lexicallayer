@@ -17,21 +17,51 @@
 
 ---
 
-## 📸 Ekran Görüntüleri & Sistem Arayüzü
+## 📸 Canlı Platform Ekran Görüntüleri (Live Production Screenshots)
+
+Aşağıdaki görüntüler doğrudan canlıda çalışan [lexicallayer.muhammetatmaca.com.tr](https://lexicallayer.muhammetatmaca.com.tr) üretim ortamından alınmıştır.
 
 <div align="center">
 
-### 1. Web Platform & Mobile Experience
-<img src="./docs/screenshots/hero-artwork.jpg" width="850" alt="LexicalLayer Hero Experience" />
-<p><i>Canlı Web Platformu: Yüksek tempolu editoryal tasarım, interaktif 3D Spline sahnesi ve mobil uyumlu cybernetic layout.</i></p>
+### 1. Hero Landing & 3D Spline Canvas
+<img src="./docs/screenshots/01-hero-landing.png" width="100%" alt="LexicalLayer Hero Landing" />
+<p><i>İnteraktif 3D Spline sahnesi, mimari el konturu, tek satırda SDK kurulum kartı ve editoryal tipografi.</i></p>
 
-### 2. Studio: Kişisel Ses & LoRA Kalibrasyon Paneli
-<img src="./docs/screenshots/studio-dashboard.png" width="850" alt="LexicalLayer Studio Dashboard" />
-<p><i>LexicalLayer Studio: Yüklenen doküman ve metinlerin bilişsel vektör analizi, token bastırma oranları ve canlı ses parmak izi.</i></p>
+---
 
-### 3. Ağırlık Onaylama & Agent Kilitleme Akışı
-<img src="./docs/screenshots/calibration-flow.png" width="850" alt="LexicalLayer Calibration Handshake Flow" />
-<p><i>Handshake Akışı: Kullanıcının onayladığı .safetensors Rank-16 adaptörünün yerel veya bulut AI agent'ına kilitlenmesi.</i></p>
+### 2. The Integrated Platform (#0272FC Blue Canvas) & WebGL 3D Tearing Cards
+<img src="./docs/screenshots/02-platform-showcase.png" width="100%" alt="LexicalLayer Platform Section" />
+<p><i>Kullanıcı etkileşimiyle 3D parçalanan sosyal medya ve sentetik metin kartları (WebGL Shaders + Matter.js simülasyonu).</i></p>
+
+---
+
+### 3. AI Slop vs. Human Precision (Interactive Auto-Scan Comparison)
+<img src="./docs/screenshots/03-comparison-slider.png" width="100%" alt="AI Slop vs Clean Comparison Slider" />
+<p><i>Otomatik tarama yapan split-slider: Ham yapay zeka çıktısındaki (Slop) 6 sentetik metafor ve 4 klişenin temiz, yoğun insan diline dönüştürülmesi.</i></p>
+
+---
+
+### 4. Developer Infrastructure & Single-Line Proxy Gateway
+<img src="./docs/screenshots/04-developer-gateway.png" width="100%" alt="Developer Infrastructure & Integrations" />
+<p><i>Canlı terminal animasyonu ve model entegrasyon infografiği (OpenAI, Claude, Gemini, DeepSeek, Qwen, Llama, Ollama, Groq).</i></p>
+
+---
+
+### 5. LexicalLayer Studio: Bilişsel Temsil & LoRA Kalibrasyon Paneli
+<img src="./docs/screenshots/05-studio-calibration.png" width="100%" alt="LexicalLayer Studio Dashboard" />
+<p><i>Metin ve doküman yükleme, interaktif veri seti analizi, token bastırma oranları ve canlı ses parmak izi yapılandırması.</i></p>
+
+---
+
+### 6. Geliştirici Dokümantasyonu (Reference & SDK Guides)
+<img src="./docs/screenshots/06-docs-reference.png" width="100%" alt="LexicalLayer Documentation" />
+<p><i>0-Code Reverse Proxy, Node/TypeScript SDK (@lexicallayer/sdk), Python istemcisi ve MCP Server konfigürasyonları.</i></p>
+
+---
+
+### 7. Responsive Mobil Deneyim
+<img src="./docs/screenshots/07-mobile-experience.png" width="360" alt="LexicalLayer Mobile Experience" />
+<p><i>Mobil cihazlarda tam ekran cybernetic el arka planı, sıfır yatay kayma ve dokunmatik optimize akıcı deneyim.</i></p>
 
 </div>
 
@@ -39,13 +69,13 @@
 
 ## 🎯 Projenin Amacı ve Çözülen Problem
 
-Günümüz büyük dil modelleri (GPT-4o, Claude 3.5, Gemini, Llama) RLHF (insan geri bildirimiyle pekiştirmeli öğrenme) sebebiyle homojenleşmiş ve yapay bir dille konuşmaya zorlanmıştır:
-* **Sentetik Slop:** *"In today's fast-paced digital landscape..."*, *"delve deep into the multifaceted tapestry..."*, *"pivotal testament to fostering synergy..."* gibi yapay zeka klişeleri.
+Büyük dil modelleri (GPT-4o, Claude 3.5, Gemini, Llama) varsayılan RLHF ve hizalama süreçleri nedeniyle belirgin kalıplara hapsolmuştur:
+* **Sentetik Slop:** *"In today's fast-paced digital era..."*, *"delve deep into the multifaceted tapestry..."*, *"pivotal testament to fostering holistic synergy..."* gibi ezber laf kalabalığı.
 * **Otantik Ses Kaybı:** Bir mühendisin, yazarın veya şirketin özgün terminolojisi, doğrudanlığı ve karar alma karakteri kaybolur.
 * **Prompt Engineering Yetersizliği:** Prompt ile "bunu söyleme, şöyle yaz" demek hem token maliyeti yaratır, hem context window'u tüketir hem de model tarafından kolayca unutulur.
 
 **LexicalLayer'ın Yaklaşımı:**  
-Prompt seviyesinde kelime filtrelemek yerine, **Representation Engineering (Bilişsel Temsil Mühendisliği)** prensibiyle çalışır. Kullanıcının otantik metinlerinden **Rank-16 LoRA adaptörü (`.safetensors`)** ve **residual steering vektörleri** sentezler; modeli inference aşamasında doğrudan hizalar.
+Prompt seviyesinde kelime manipülasyonu yapmak yerine, **Representation Engineering (Bilişsel Temsil Mühendisliği)** prensibiyle çalışır. Kullanıcının otantik metinlerinden **Rank-16 LoRA adaptörü (`.safetensors`)** ve **residual steering vektörleri** sentezler; modeli inference aşamasında doğrudan hizalar.
 
 ---
 
